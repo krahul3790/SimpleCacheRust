@@ -62,4 +62,16 @@ mod tests {
 
         assert_eq!(None, my_cache.get(1));
     }
+
+    fn verify_least_recently_used_element_is_evicted() {
+        let mut my_cache = Cache::new_with_capacity(4);
+
+        my_cache.put(1, 10);
+        my_cache.put(2, 20);
+        my_cache.put(3, 30);
+        my_cache.put(4, 40);
+
+        assert_eq!(false, my_cache.contains_key(&1));
+
+    }
 }
