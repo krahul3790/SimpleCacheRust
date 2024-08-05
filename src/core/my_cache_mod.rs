@@ -5,7 +5,7 @@ use std::hash::Hash;
 pub struct Cache<K: Eq + Hash, V: Clone> {
     map: HashMap<K, V>,
     usage_order: VecDeque<K>,
-    capacity,
+    capacity: usize,
 }
 
 impl<K: Eq + Hash, V: Clone> Cache<K, V> {
