@@ -45,7 +45,7 @@ mod tests {
         my_cache.put(String::from("Rahul"), String::from("Kulkarni"));
 
         assert_eq!(1, my_cache.size());
-        assert_eq!("Kulkarni", my_cache.get(String::from("Rahul")).unwrap());
+        assert_eq!("Kulkarni", my_cache.get(&String::from("Rahul")).unwrap());
     }
 
     #[test]
@@ -56,15 +56,16 @@ mod tests {
         my_cache.put(2, 20);
         my_cache.put(3, 30);
 
-        assert_eq!(10, *my_cache.get(1).unwrap());
+        assert_eq!(10, *my_cache.get(&1).unwrap());
 
         my_cache.delete_key(1);
 
-        assert_eq!(None, my_cache.get(1));
+        assert_eq!(None, my_cache.get(&1));
     }
 
+    #[test]
     fn verify_least_recently_used_element_is_evicted() {
-        let mut my_cache = Cache::new_with_capacity(4);
+        let mut my_cache = Cache::new_with_capacity(3);
 
         my_cache.put(1, 10);
         my_cache.put(2, 20);
